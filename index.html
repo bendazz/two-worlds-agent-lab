@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Worlds Agent Lab</title>
+<meta name="description" content="Test and score a Langflow agent that answers questions about two invented worlds, the Mereholt and the Kestrine Drift.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">A/B</span>
+      <div>
+        <p class="eyebrow">CIS-305 · Agents studio</p>
+        <h1>Two Worlds Agent Lab</h1>
+      </div>
+    </div>
+    <div class="scoreline" aria-live="polite">
+      <div class="score-pill"><span class="score-label">Answers</span><span class="score-val" id="sumAnswer">—</span></div>
+      <div class="score-pill"><span class="score-label">Route</span><span class="score-val" id="sumRoute">—</span></div>
+      <div class="score-pill"><span class="score-label">Scored</span><span class="score-val" id="sumDone">0 / 47</span></div>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#setup" data-tab="setup">1 · Set up</a>
+    <a href="#score" data-tab="score">2 · Test &amp; score</a>
+    <a href="#summary" data-tab="summary">3 · Summary</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ SET UP ============ -->
+<section id="setup" class="panel" data-panel="setup">
+  <div class="intro">
+    <h2>Your agent, and two worlds it has never heard of</h2>
+    <p>You'll build one agent with three tools: a search tool for each of two invented history books, plus a calculator. Then you'll ask it the questions on the next tab and score two things for each one: <b>did it get the answer right</b>, and <b>did it take the right route</b> to get there, meaning the tools it called.</p>
+  </div>
+
+  <div class="grid-2">
+    <article class="card">
+      <h3>The two books</h3>
+      <ul class="files">
+        <li>
+          <div><b>A Traveler's History of the Mereholt</b><span>River valleys, a salt coast, queens and kings. Calendar: TR.</span></div>
+          <a class="btn" href="books/mereholt.txt" download>Download .txt</a>
+        </li>
+        <li>
+          <div><b>The Drift Remembered</b><span>Islands floating above a sea of cloud. Calendar: AL.</span></div>
+          <a class="btn" href="books/drift.txt" download>Download .txt</a>
+        </li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Chunk settings (everyone uses these)</h3>
+      <dl class="settings">
+        <div><dt>Separator</dt><dd><code>\n</code> <small>(a single line break)</small></dd></div>
+        <div><dt>Chunk Size</dt><dd><code>1000</code></dd></div>
+        <div><dt>Chunk Overlap</dt><dd><code>200</code></dd></div>
+        <div><dt>Number of Results</dt><dd><code>4</code> <small>(on the search side)</small></dd></div>
+      </dl>
+      <p class="fine">Put each book in its <b>own collection</b>. Use the same embedding model for loading a book and for searching it.</p>
+    </article>
+  </div>
+
+  <article class="card">
+    <h3>The agent's three tools</h3>
+    <div class="toolrow">
+      <div class="tool"><span class="chip chip-M">Mereholt book</span><p>Searches <i>A Traveler's History of the Mereholt</i>.</p></div>
+      <div class="tool"><span class="chip chip-D">Drift book</span><p>Searches <i>The Drift Remembered</i>.</p></div>
+      <div class="tool"><span class="chip chip-C">Calculator</span><p>Does arithmetic.</p></div>
+    </div>
+    <p class="fine">Give each book tool a clear description so the agent knows which world it covers. The agent decides which tool to use from those descriptions.</p>
+  </article>
+
+  <article class="card">
+    <h3>Maps</h3>
+    <p>For checking the agent's answers after you've asked.</p>
+    <div class="btnrow">
+      <a class="btn" href="maps/mereholt-map.html" target="_blank" rel="noopener">Map of the Mereholt</a>
+      <a class="btn" href="maps/kestrine-drift-map.html" target="_blank" rel="noopener">Map of the Kestrine Drift</a>
+    </div>
+  </article>
+
+  <article class="card howto">
+    <h3>How scoring works</h3>
+    <ol>
+      <li><b>Ask</b> the agent a question. Use <i>Copy</i> to paste it into the Langflow Playground exactly.</li>
+      <li><b>Record</b> what the trace shows: which tools it called and how many model calls it made.</li>
+      <li><b>Check</b> against the key. The expected answer and route appear, and the route is scored for you.</li>
+      <li><b>Mark</b> the answer ✓ correct, ½ partial or ✗ wrong.</li>
+    </ol>
+    <p class="fine">The key stays hidden until you've recorded the trace. Please don't peek first. The point is to see what <em>your agent</em> does. Your work saves in this browser as you go.</p>
+    <a class="btn btn-solid" href="#score" data-tab="score">Start testing →</a>
+  </article>
+</section>
+
+<!-- ============ TEST & SCORE ============ -->
+<section id="score" class="panel" data-panel="score" hidden>
+  <div class="who card">
+    <label for="team">Team or name</label>
+    <input id="team" type="text" autocomplete="off" placeholder="e.g. Team Heron">
+    <label for="model">Model</label>
+    <input id="model" type="text" autocomplete="off" placeholder="e.g. Gemini 2.5 Flash">
+  </div>
+
+  <nav class="groupnav" id="groupnav" aria-label="Question groups"></nav>
+  <div id="questions"></div>
+</section>
+
+<!-- ============ SUMMARY ============ -->
+<section id="summary" class="panel" data-panel="summary" hidden>
+  <article class="card">
+    <h3>Scores by group</h3>
+    <div class="table-wrap"><table class="tbl" id="groupTable"></table></div>
+  </article>
+
+  <article class="card">
+    <h3>Studio rubric</h3>
+    <p class="fine">Each dimension is scored 0 (weak), 1 (okay) or 2 (strong). The first four come from your scores: <b>2</b> is 80% or more, <b>1</b> is 50–79%, <b>0</b> is below 50%. You score <i>Cost &amp; steps</i> yourself.</p>
+    <div class="table-wrap"><table class="tbl" id="rubricTable"></table></div>
+  </article>
+
+  <article class="card">
+    <h3>Consistency check</h3>
+    <p class="fine">Ask each of three questions three times. Does the agent take the same route and give the same answer every time?</p>
+    <div class="table-wrap"><table class="tbl" id="consTable"></table></div>
+  </article>
+
+  <article class="card">
+    <h3>Trope check (book tools turned off)</h3>
+    <p class="fine">Disconnect both book tools and ask these four questions. A model that's guessing gives the fantasy-cliché answer. Then reconnect the tools and compare.</p>
+    <div class="table-wrap"><table class="tbl" id="tropeTable"></table></div>
+  </article>
+
+  <article class="card export">
+    <h3>Hand it in</h3>
+    <div class="btnrow">
+      <button class="btn btn-solid" type="button" id="dlCsv">Download results (.csv)</button>
+      <button class="btn" type="button" id="copySummary">Copy summary</button>
+      <button class="btn" type="button" id="printBtn">Print</button>
+    </div>
+    <p class="fine" id="exportMsg" role="status"></p>
+    <div class="danger">
+      <button class="btn btn-quiet" type="button" id="resetBtn">Clear all my answers…</button>
+      <span id="resetConfirm" hidden>
+        This erases everything on this page. <button class="btn btn-bad" type="button" id="resetYes">Yes, clear it</button>
+        <button class="btn btn-quiet" type="button" id="resetNo">Keep my work</button>
+      </span>
+    </div>
+  </article>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>Mercyhurst University · CIS-305 AI Application Development · Fall 2026. The Mereholt and the Kestrine Drift are invented for this course.</p>
+</footer>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

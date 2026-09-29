@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0}</style>
+</head>
+<body>
+<title>The Kestrine Drift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Karla:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a rope-scribe's cable chart — islands hang in a dusk sky over the cloud sea; ropes and cables are the real subject. Map on top, a three-column key below (stacks on phones). Single committed look: dusk. */
+:root {
+  color-scheme: dark;
+  --sky: #18202e;
+  --sky-hi: #222d40;
+  --cloud: #3a4658;
+  --stone: #cdbd9c;
+  --stone-dim: #8f8570;
+  --rope: #e0a458;
+  --cable: #f1e6cf;
+  --text: #e8e4da;
+  --text-dim: #a5acb8;
+  --salt: #9cc6c9;
+  --display: "Marcellus SC", "Trajan Pro", Georgia, serif;
+  --body: "Karla", "Avenir Next", "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+html { background: var(--sky); }
+body { background: var(--sky); color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.page { max-width: 1100px; margin: 0 auto; padding-inline: 16px; padding-block: 22px 36px; display: grid; gap: 22px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; }
+h1 { font-family: var(--display); font-weight: 400; font-size: 2.4rem; letter-spacing: 0.06em; margin: 0; line-height: 1.05; text-wrap: balance; }
+header p { margin: 0; color: var(--text-dim); font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em; }
+.chart { min-width: 0; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px var(--cloud); }
+.chart svg { display: block; width: 100%; height: auto; }
+.below { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 800px) { .below { grid-template-columns: minmax(0, 1fr); } }
+.below section { min-width: 0; }
+h2 { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rope); margin: 0 0 10px; }
+.key { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.key li { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; font-size: 0.93rem; }
+.key svg { width: 48px; height: 18px; }
+.notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 0.93rem; }
+.notes b { font-weight: 600; color: var(--cable); }
+.src { font-size: 0.82rem; color: var(--text-dim); margin: 0; }
+/* SVG text */
+.isl { font-family: var(--display); fill: var(--text); letter-spacing: 0.16em; }
+.vil { font-family: var(--body); fill: var(--text); font-size: 14px; }
+.sub { font-family: var(--body); font-style: italic; fill: var(--text-dim); font-size: 12.5px; }
+.ropel { font-family: var(--mono); fill: var(--rope); font-size: 11.5px; letter-spacing: 0.06em; }
+.cablel { font-family: var(--mono); fill: var(--cable); font-size: 11.5px; letter-spacing: 0.06em; }
+.halo { paint-order: stroke; stroke: var(--sky); stroke-width: 4px; stroke-linejoin: round; }
+</style>
+
+<div class="page">
+  <header>
+    <h1>The Kestrine Drift</h1>
+    <p>After Tamsin Vey, Rope-Scribe of Aubade · AL 340</p>
+  </header>
+
+  <div class="chart">
+    <svg viewBox="0 0 900 900" role="img" aria-labelledby="dtitle">
+      <title id="dtitle">Map of the Kestrine Drift: Kestra in the middle, Orrin's Shelf to the north on the Long Tether, the forty Pennons curving south-west to Salt Kettle, and Low Drift hanging beneath Kestra's southern brink.</title>
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="45%" r="65%">
+          <stop offset="0" stop-color="var(--sky-hi)"/>
+          <stop offset="1" stop-color="var(--sky)"/>
+        </radialGradient>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+        <linearGradient id="terrace" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="var(--stone)"/>
+          <stop offset="1" stop-color="var(--stone-dim)"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="900" height="900" fill="url(#glow)"/>
+      <!-- the cloud sea -->
+      <g fill="var(--cloud)" opacity="0.55" filter="url(#soft)">
+        <ellipse cx="160" cy="300" rx="170" ry="40"/><ellipse cx="760" cy="420" rx="160" ry="36"/>
+        <ellipse cx="620" cy="760" rx="220" ry="44"/><ellipse cx="300" cy="610" rx="140" ry="30"/>
+        <ellipse cx="780" cy="110" rx="120" ry="26"/><ellipse cx="200" cy="80" rx="130" ry="24"/>
+      </g>
+
+      <!-- The Great Gale came from the west -->
+      <g stroke="var(--text-dim)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.8">
+        <path d="M24 396 q30 -10 60 0 t60 0"/><path d="M24 416 q30 -10 60 0 t60 0"/><path d="M24 436 q30 -10 60 0 t60 0"/>
+        <path d="M150 416 l-10 -7 m10 7 l-10 7"/>
+      </g>
+      <text x="24" y="384" class="sub">The Great Gale, AL 214, came from the west</text>
+
+      <!-- Long Tether: Tether-post on Kestra's northern brink to the Tether-landing on the Shelf's high western rim -->
+      <line x1="470" y1="330" x2="486" y2="176" stroke="var(--cable)" stroke-width="3.2"/>
+      <g transform="translate(478 256) rotate(-84)">
+        <rect x="-11" y="-6" width="22" height="12" rx="2" fill="var(--sky)" stroke="var(--cable)" stroke-width="1.4"/>
+      </g>
+      <text x="462" y="262" text-anchor="end" class="cablel halo">THE LONG TETHER</text>
+
+      <!-- Orrin's Shelf: nine terraces, high west to low east -->
+      <g>
+        <path d="M478 120 L 700 138 L 704 206 L 480 196 Z" fill="url(#terrace)" stroke="var(--stone)" stroke-width="1.2"/>
+        <g stroke="var(--sky)" stroke-width="1" stroke-opacity="0.6">
+          <line x1="503" y1="122" x2="505" y2="197"/><line x1="528" y1="124" x2="530" y2="198"/><line x1="553" y1="126" x2="555" y2="199"/>
+          <line x1="578" y1="128" x2="580" y2="200"/><line x1="603" y1="130" x2="605" y2="201"/><line x1="628" y1="132" x2="630" y2="202"/>
+          <line x1="653" y1="134" x2="655" y2="203"/><line x1="678" y1="136" x2="680" y2="205"/>
+        </g>
+        <rect x="480" y="168" width="14" height="14" fill="var(--cable)"/>
+        <circle cx="690" cy="170" r="4.5" fill="var(--sky)" stroke="var(--sky)" stroke-width="0"/>
+        <circle cx="690" cy="170" r="3.5" fill="var(--text)"/>
+      </g>
+      <text x="590" y="104" text-anchor="middle" class="isl halo" style="font-size:20px">ORRIN'S SHELF</text>
+      <text x="498" y="222" class="sub halo">Tether-landing (high western rim)</text>
+      <text x="704" y="118" class="sub halo" text-anchor="end">high west → low east · 9 terraces</text>
+      <text x="714" y="168" class="vil halo">Furrowend</text>
+
+      <!-- Orrin's Step: a small rock just beneath the low eastern rim -->
+      <path d="M718 228 l 22 -4 l 12 12 l -8 14 l -22 2 l -10 -12 Z" fill="var(--stone-dim)" stroke="var(--stone)" stroke-width="1" stroke-dasharray="3 2"/>
+      <line x1="704" y1="206" x2="722" y2="228" stroke="var(--text-dim)" stroke-width="0.8" stroke-dasharray="2 3"/>
+      <text x="740" y="274" text-anchor="middle" class="vil halo">Orrin's Step</text>
+      <text x="740" y="290" text-anchor="middle" class="sub halo">prison rock, beneath the Shelf</text>
+
+      <!-- Kestra -->
+      <path d="M322 402 C 330 352, 400 328, 470 330 C 548 330, 612 352, 624 410 C 636 470, 588 522, 500 530 C 420 536, 356 522, 334 482 C 322 460, 318 430, 322 402 Z" fill="var(--stone)" stroke="var(--cable)" stroke-width="1.2"/>
+      <!-- Aubade, the capital, near the center -->
+      <g transform="translate(472 430)">
+        <circle r="10" fill="var(--sky)"/>
+        <circle r="10" fill="none" stroke="var(--sky)" stroke-width="2"/>
+        <circle r="4.5" fill="var(--rope)"/>
+      </g>
+      <text x="472" y="460" text-anchor="middle" style="font-family:var(--display); font-size:18px; fill:var(--sky); letter-spacing:0.08em">Aubade</text>
+      <text x="472" y="476" text-anchor="middle" style="font-family:var(--body); font-style:italic; font-size:12px; fill:var(--sky)">capital · Hall of Cords</text>
+      <circle cx="356" cy="428" r="3.6" fill="var(--sky)"/>
+      <text x="366" y="424" style="font-family:var(--body); font-size:13.5px; fill:var(--sky)">Thrum</text>
+      <circle cx="588" cy="428" r="3.6" fill="var(--sky)"/>
+      <text x="578" y="424" text-anchor="end" style="font-family:var(--body); font-size:13.5px; fill:var(--sky)">Wefting</text>
+      <text x="472" y="386" text-anchor="middle" style="font-family:var(--display); font-size:28px; letter-spacing:0.24em; fill:var(--sky)">KESTRA</text>
+      <!-- Tether-post -->
+      <rect x="464" y="324" width="12" height="12" fill="var(--cable)" stroke="var(--sky)" stroke-width="1.2"/>
+      <text x="480" y="318" class="sub halo">Tether-post</text>
+
+      <!-- Walled Stair and Stone Hoist down to Low Drift -->
+      <path d="M470 530 L 472 612" stroke="var(--cable)" stroke-width="5" stroke-dasharray="2 3"/>
+      <path d="M470 530 L 472 612" stroke="var(--cable)" stroke-width="9" stroke-opacity="0.25"/>
+      <text x="458" y="578" text-anchor="end" class="cablel halo">WALLED STAIR</text>
+      <circle cx="530" cy="526" r="8" fill="none" stroke="var(--cable)" stroke-width="1.6"/>
+      <g stroke="var(--cable)" stroke-width="1"><line x1="522" y1="526" x2="538" y2="526"/><line x1="530" y1="518" x2="530" y2="534"/></g>
+      <line x1="530" y1="534" x2="540" y2="624" stroke="var(--cable)" stroke-width="1" stroke-dasharray="1 3"/>
+      <text x="546" y="560" class="cablel halo">STONE HOIST</text>
+
+      <!-- Low Drift: seven small islands, lower in the cloud -->
+      <g fill="var(--stone-dim)" stroke="var(--stone)" stroke-width="0.9" opacity="0.92">
+        <path d="M438 616 C 450 606, 500 604, 514 616 C 522 632, 500 646, 470 646 C 446 646, 430 632, 438 616 Z"/>
+        <ellipse cx="548" cy="640" rx="16" ry="9"/>
+        <ellipse cx="408" cy="646" rx="14" ry="8"/>
+        <ellipse cx="520" cy="672" rx="13" ry="7"/>
+        <ellipse cx="440" cy="676" rx="12" ry="7"/>
+        <ellipse cx="572" cy="612" rx="10" ry="6"/>
+        <ellipse cx="480" cy="690" rx="11" ry="6"/>
+      </g>
+      <circle cx="476" cy="628" r="3.4" fill="var(--text)"/>
+      <text x="476" y="724" text-anchor="middle" class="isl halo" style="font-size:18px">LOW DRIFT</text>
+      <text x="476" y="742" text-anchor="middle" class="sub halo">seven islands beneath Kestra's southern brink</text>
+      <text x="600" y="660" class="vil halo">the Anvil · Chisel</text>
+      <line x1="596" y1="656" x2="516" y2="630" stroke="var(--text-dim)" stroke-width="0.7"/>
+
+      <!-- The Pennons: forty islands in a curving chain to the south-west -->
+      <path id="pennonline" d="M338 492 C 300 540, 270 580, 250 630 C 232 676, 212 716, 172 752" fill="none" stroke="var(--rope)" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <g id="pennons" fill="var(--stone)"></g>
+      <text x="306" y="478" text-anchor="end" class="ropel halo">KESTRA SPAN</text>
+      <text x="190" y="610" text-anchor="end" class="isl halo" style="font-size:18px">THE PENNONS</text>
+      <text x="190" y="628" text-anchor="end" class="sub halo">40 islands, joined by rope bridges</text>
+      <text id="lab-first" class="sub halo">First Pennon</text>
+      <text id="lab-ninth" class="sub halo">Ninth Pennon · Guild Hall</text>
+      <text id="lab-fortieth" class="sub halo">Fortieth Pennon</text>
+
+      <!-- Brine Bridge with the Midspan -->
+      <path d="M168 756 C 150 776, 136 790, 122 806" fill="none" stroke="var(--rope)" stroke-width="2.2"/>
+      <rect x="138" y="778" width="12" height="8" fill="var(--rope)" transform="rotate(-45 144 782)"/>
+      <text x="164" y="800" class="ropel halo">BRINE BRIDGE · MIDSPAN</text>
+
+      <!-- Salt Kettle: a round bowl at the far south-west -->
+      <circle cx="92" cy="838" r="44" fill="var(--stone)" stroke="var(--cable)" stroke-width="1.2"/>
+      <circle cx="92" cy="842" r="24" fill="var(--salt)" opacity="0.85"/>
+      <text x="92" y="848" text-anchor="middle" style="font-family:var(--body); font-style:italic; font-size:11.5px; fill:var(--sky)">brine spring</text>
+      <text x="150" y="866" class="isl halo" style="font-size:18px">SALT KETTLE</text>
+
+      <!-- Compass -->
+      <g transform="translate(820 820)">
+        <line x1="0" y1="-30" x2="0" y2="30" stroke="var(--text-dim)" stroke-width="1"/>
+        <line x1="-30" y1="0" x2="30" y2="0" stroke="var(--text-dim)" stroke-width="1"/>
+        <path d="M0 -30 l5 12 h-10 Z" fill="var(--rope)"/>
+        <text y="-38" text-anchor="middle" style="font-family:var(--mono); font-size:13px; fill:var(--rope)">N</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="below">
+    <section>
+      <h2>Key</h2>
+      <ul class="key">
+        <li><svg viewBox="0 0 48 18"><line x1="2" y1="9" x2="46" y2="9" stroke="var(--cable)" stroke-width="3.2"/></svg>Long Tether, a cable ridden by cable-barges</li>
+        <li><svg viewBox="0 0 48 18"><line x1="2" y1="9" x2="46" y2="9" stroke="var(--rope)" stroke-width="2" stroke-dasharray="4 3"/></svg>Rope bridge</li>
+        <li><svg viewBox="0 0 48 18"><line x1="2" y1="9" x2="46" y2="9" stroke="var(--cable)" stroke-width="5" stroke-dasharray="2 3"/></svg>Walled Stair, hanging down to Low Drift</li>
+        <li><svg viewBox="0 0 48 18"><circle cx="24" cy="9" r="7" fill="var(--sky)" stroke="var(--text)" stroke-width="1"/><circle cx="24" cy="9" r="3.5" fill="var(--rope)"/></svg>Capital</li>
+        <li><svg viewBox="0 0 48 18"><circle cx="24" cy="9" r="3.6" fill="var(--text)"/></svg>Village</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Getting around</h2>
+      <ul class="notes">
+        <li><b>Nobody flies.</b> People cross between islands on rope bridges or in cable-barges.</li>
+        <li><b>No bridge</b> reaches Orrin's Shelf. The only way there is the Long Tether.</li>
+        <li><b>Orrin's Shelf</b> is the farming island. <b>Orrin's Step</b> is the prison rock beneath it. Don't mix them up.</li>
+        <li>Kestra can be crossed from its western brink to its eastern brink in <b>one long day</b>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Not on this map</h2>
+      <ul class="notes">
+        <li><b>Rivers.</b> The Drift has none. Water comes from rain cisterns.</li>
+        <li><b>What lies beneath the clouds.</b> No one in the Drift looks over the edge, so no one knows.</li>
+      </ul>
+      <p class="src" style="margin-top:12px">Drawn from <i>The Drift Remembered</i>. Where the book gives no exact position, an island or village is drawn only where the book places it in general.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+// Place the forty Pennons evenly along the chain's curve.
+(function () {
+  var path = document.getElementById('pennonline');
+  var g = document.getElementById('pennons');
+  var len = path.getTotalLength();
+  var ns = 'http://www.w3.org/2000/svg';
+  var marks = { 1: 'lab-first', 9: 'lab-ninth', 40: 'lab-fortieth' };
+  for (var i = 1; i <= 40; i++) {
+    var p = path.getPointAtLength(len * (i - 0.5) / 40);
+    var c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', p.x.toFixed(1));
+    c.setAttribute('cy', p.y.toFixed(1));
+    c.setAttribute('r', i === 9 ? 4.2 : 2.8);
+    c.setAttribute('fill', i === 9 ? 'var(--rope)' : 'var(--stone)');
+    g.appendChild(c);
+    if (marks[i]) {
+      var t = document.getElementById(marks[i]);
+      if (i === 1) t.setAttribute('text-anchor', 'end');
+      t.setAttribute('x', (i === 1 ? p.x - 10 : p.x + 10).toFixed(1));
+      t.setAttribute('y', (p.y + (i === 40 ? -8 : 4)).toFixed(1));
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
