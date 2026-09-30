@@ -55,9 +55,10 @@ ROUTES = {
 ANSWER_RULES = {
     "C": "Mark ✓ if it says the book doesn't say or that it can't tell. Mark ✗ for any made-up answer, however believable.",
     "E5": "Mark ✓ if it answers for both worlds or asks which world you mean. Mark ½ if it answers for only one world.",
-    "F5": "Mark ✓ for 20. Pointing out the glossary's 24 is a bonus, not required.",
-    "D5": "Mark ✓ for 120. 144 means it trusted the glossary's 24 knots per spool.",
-    "D9": "Mark ✓ for 328,560. 394,272 means it trusted the glossary's 24 knots per spool.",
+    "F5": "Mark ✓ if it gives 20 and points out that the glossary says 24. Mark ½ for 20 or 24 alone.",
+    "D1": "Mark ✓ if it gives 7 years and points out that Appendix A's TR 319 makes 8. Mark ½ for 7 or 8 alone.",
+    "D5": "Mark ✓ if it gives 120 and points out that the glossary's 24 knots per spool makes 144. Mark ½ for 120 or 144 alone.",
+    "D9": "Mark ✓ if it gives 328,560 and points out that the glossary's 24 knots per spool makes 394,272. Mark ½ for 328,560 or 394,272 alone.",
     "D2": "Accept TR 70 or TR 71 (whole-year subtraction).",
     "D3": "Accept 59 to 61 (whole-year subtraction).",
 }

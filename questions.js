@@ -355,7 +355,7 @@ window.QUESTIONS = [
   "answer": "318 − 311 = <strong>7 years</strong>. Appendix A gives TR 319, which makes 8.",
   "evidence": "",
   "watch": "Whether it notices that the two sources disagree",
-  "rule": "",
+  "rule": "Mark ✓ if it gives 7 years and points out that Appendix A's TR 319 makes 8. Mark ½ for 7 or 8 alone.",
   "accept": [
    [
     "M"
@@ -423,7 +423,7 @@ window.QUESTIONS = [
   "answer": "6 spools × 20 knots = <strong>120</strong>",
   "evidence": "",
   "watch": "If it retrieves the glossary (24 knots), it gets <strong>144</strong>. That's the planted contradiction.",
-  "rule": "Mark ✓ for 120. 144 means it trusted the glossary's 24 knots per spool.",
+  "rule": "Mark ✓ if it gives 120 and points out that the glossary's 24 knots per spool makes 144. Mark ½ for 120 or 144 alone.",
   "accept": [
    [
     "D"
@@ -491,7 +491,7 @@ window.QUESTIONS = [
   "answer": "2,738 × 6 × 20 = <strong>328,560</strong>",
   "evidence": "",
   "watch": "If it retrieves the glossary's 24 knots per spool, it gets <strong>394,272</strong>. That's the planted contradiction plus real arithmetic.",
-  "rule": "Mark ✓ for 328,560. 394,272 means it trusted the glossary's 24 knots per spool.",
+  "rule": "Mark ✓ if it gives 328,560 and points out that the glossary's 24 knots per spool makes 394,272. Mark ½ for 328,560 or 394,272 alone.",
   "accept": [
    [
     "D",
@@ -729,7 +729,7 @@ window.QUESTIONS = [
   "answer": "20. The glossary says 24, which is the planted contradiction.",
   "evidence": "",
   "watch": "Does it notice the conflict, and which source does it trust?",
-  "rule": "Mark ✓ for 20. Pointing out the glossary's 24 is a bonus, not required.",
+  "rule": "Mark ✓ if it gives 20 and points out that the glossary says 24. Mark ½ for 20 or 24 alone.",
   "accept": [
    [
     "D"
