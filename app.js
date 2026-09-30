@@ -33,6 +33,11 @@
     var raw = localStorage.getItem(STORE_KEY);
     if (raw) { var saved = JSON.parse(raw); S = Object.assign(blank(), saved); }
   } catch (e) { /* storage unavailable: work in memory only */ }
+  // The consistency questions are fixed; drop runs saved against any other question.
+  S.cons = CONS_DEFAULT.map(function (id, i) {
+    var row = S.cons && S.cons[i];
+    return row && row.id === id ? row : blank().cons[i];
+  });
   function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) { } }
   function qs(id) {
     if (!S.q[id]) S.q[id] = { tools: [], none: false, calls: "", agent: "", checked: false, answer: null, routeOverride: null };
@@ -316,11 +321,9 @@
 
   // consistency
   function renderCons() {
-    var opts = QS.map(function (q) { return q.id; });
     var h = '<thead><tr><th>Question</th><th>Run 1</th><th>Run 2</th><th>Run 3</th><th>Same every time?</th></tr></thead><tbody>';
     S.cons.forEach(function (row, i) {
-      h += '<tr><td><select data-ci="' + i + '" data-f="id" aria-label="Question for row ' + (i + 1) + '">' +
-        opts.map(function (id) { return '<option' + (id === row.id ? ' selected' : '') + '>' + id + '</option>'; }).join('') + '</select>' +
+      h += '<tr><td><b>' + row.id + '</b>' +
         '<div class="fine">' + (BY_ID[row.id] ? BY_ID[row.id].copy : '') + '</div></td>';
       row.runs.forEach(function (run, j) {
         h += '<td><select data-ci="' + i + '" data-run="' + j + '" data-f="r" aria-label="Row ' + (i + 1) + ' run ' + (j + 1) + ' route">' +
@@ -337,8 +340,7 @@
   }
   document.getElementById("consTable").addEventListener("change", function (e) {
     var t = e.target, i = +t.getAttribute("data-ci"), f = t.getAttribute("data-f");
-    if (f === "id") S.cons[i].id = t.value;
-    else S.cons[i].runs[+t.getAttribute("data-run")][f] = t.value;
+    S.cons[i].runs[+t.getAttribute("data-run")][f] = t.value;
     save();
     renderCons();
   });
